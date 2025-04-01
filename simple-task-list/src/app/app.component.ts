@@ -6,17 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  tasks: string[] = ['Learn Angular', 'Practice coding']; // Initial tasks
-  newTask: string = ''; // Bound to input field
+  tasks: { text: string, createdAt: Date, cost: number }[] = [
+    { text: 'Learn Angular', createdAt: new Date(), cost: 10 },
+    { text: 'Practice coding', createdAt: new Date(), cost: 15 }
+  ];
+  newTask: string = '';
+  searchTerm: string = '';
 
   addTask() {
-    if (this.newTask.trim()) { // Only add if not empty
-      this.tasks.push(this.newTask);
-      this.newTask = ''; // Clear input after adding
+    if (this.newTask.trim()) {
+      this.tasks.push({
+        text: this.newTask,
+        createdAt: new Date(),
+        cost: Math.floor(Math.random() * 20) + 5 // Random cost between 5 and 24
+      });
+      this.newTask = '';
     }
   }
 
   deleteTask(index: number) {
-    this.tasks.splice(index, 1); // Remove task at index
+    this.tasks.splice(index, 1);
   }
 }
