@@ -13,3 +13,6 @@ button {
 input {
   margin: 10px 0;
 }
+button.toggle {
+  margin: 10px 0;
+}
