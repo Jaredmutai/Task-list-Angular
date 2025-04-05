@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-root',
@@ -6,31 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  tasks: { text: string, createdAt: Date, cost: number, id: number }[] = [
-    { id: 1, text: 'Learn Angular', createdAt: new Date(), cost: 10 },
-    { id: 2, text: 'Practice coding', createdAt: new Date(), cost: 15 }
-  ];
+  tasks: { text: string, createdAt: Date, cost: number, id: number }[] = [];
   newTask: string = '';
   searchTerm: string = '';
-  showFilteredList: boolean = true; // Toggle for filtered list
+  showFilteredList: boolean = true;
+
+  constructor(private taskService: TaskService) {
+    this.tasks = this.taskService.getTasks(); // Initialize tasks from service
+  }
 
   addTask() {
     if (this.newTask.trim()) {
-      this.tasks.push({
-        id: this.tasks.length + 1, // Simple unique ID
-        text: this.newTask,
-        createdAt: new Date(),
-        cost: Math.floor(Math.random() * 20) + 5
-      });
+      this.taskService.addTask(this.newTask);
       this.newTask = '';
     }
   }
 
   deleteTask(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== id); // Use ID for deletion
+    this.taskService.deleteTask(id);
   }
 
-  // TrackBy function for ngFor optimization
   trackByTaskId(index: number, task: { id: number }): number {
     return task.id;
   }
