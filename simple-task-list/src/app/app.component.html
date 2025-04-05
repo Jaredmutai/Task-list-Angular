@@ -1,17 +1,14 @@
 <h1>Task List with Filters</h1>
 
-<!-- Input for adding tasks -->
 <div>
   <input [(ngModel)]="newTask" placeholder="Enter a new task" />
   <button [disabled]="!newTask.trim()" (click)="addTask()">Add Task</button>
 </div>
 
-<!-- Search filter -->
 <div>
   <input [(ngModel)]="searchTerm" placeholder="Search tasks" />
 </div>
 
-<!-- Task List with ngFor, ngIf, pipes, and trackBy -->
 <ul>
   <li *ngFor="let task of tasks; trackBy: trackByTaskId" [appHighlight]="task.text">
     {{ task.text | capitalize }} 
@@ -22,12 +19,10 @@
   <p *ngIf="tasks.length === 0">No tasks yet!</p>
 </ul>
 
-<!-- Toggle button for filtered list -->
 <button (click)="showFilteredList = !showFilteredList">
   {{ showFilteredList ? 'Hide' : 'Show' }} Filtered Tasks
 </button>
 
-<!-- Filtered Task List with ngIf toggle -->
 <div *ngIf="showFilteredList">
   <h2>Filtered Tasks</h2>
   <ul>
