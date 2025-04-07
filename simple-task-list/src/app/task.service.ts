@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root' // Makes the service available app-wide
+  providedIn: 'root'
 })
 export class TaskService {
   private tasks: { text: string, createdAt: Date, cost: number, id: number }[] = [
@@ -25,5 +25,9 @@ export class TaskService {
 
   deleteTask(id: number) {
     this.tasks = this.tasks.filter(task => task.id !== id);
+  }
+
+  clearTasks() {
+    this.tasks = [];
   }
 }
