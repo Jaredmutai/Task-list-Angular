@@ -37,3 +37,8 @@
     <p *ngIf="tasks.length > 0 && !(tasks | slice:0:tasks.length | filter:searchTerm).length">No matching tasks!</p>
   </ul>
 </div>
+
+<button (click)="showFilteredList = !showFilteredList">
+  {{ showFilteredList ? 'Hide' : 'Show' }} Filtered Tasks
+</button>
+<button (click)="clearTasks()">Clear All Tasks</button>
