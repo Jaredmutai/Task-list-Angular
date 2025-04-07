@@ -13,7 +13,7 @@ export class AppComponent {
   showFilteredList: boolean = true;
 
   constructor(private taskService: TaskService) {
-    this.tasks = this.taskService.getTasks(); // Initialize tasks from service
+    this.tasks = this.taskService.getTasks();
   }
 
   addTask() {
@@ -25,6 +25,10 @@ export class AppComponent {
 
   deleteTask(id: number) {
     this.taskService.deleteTask(id);
+  }
+
+  clearTasks() {
+    this.taskService.clearTasks();
   }
 
   trackByTaskId(index: number, task: { id: number }): number {
