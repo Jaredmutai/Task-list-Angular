@@ -1,1 +1,11 @@
-<p>task-detail works!</p>
+<h2>Task Details</h2>
+<div *ngIf="task; else noTask">
+  <p><strong>Task:</strong> {{ task.text | capitalize }}</p>
+  <p><strong>Created:</strong> {{ task.createdAt | date:'full' }}</p>
+  <p><strong>Cost:</strong> {{ task.cost | currency:'USD' }}</p>
+  <a routerLink="/tasks">Back to Tasks</a>
+</div>
+<ng-template #noTask>
+  <p>Task not found!</p>
+  <a routerLink="/tasks">Back to Tasks</a>
+</ng-template>
