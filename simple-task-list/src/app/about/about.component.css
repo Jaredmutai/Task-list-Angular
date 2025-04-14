@@ -26,3 +26,13 @@ a {
 a:hover {
     text-decoration: underline;
 }
+/* Additional styles for responsiveness */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
