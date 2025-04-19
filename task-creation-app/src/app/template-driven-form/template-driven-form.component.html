@@ -1,1 +1,18 @@
-<p>template-driven-form works!</p>
+<form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="form-container">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        name="title"
+        [(ngModel)]="task.title"
+        required
+        minlength="3"
+        #title="ngModel"
+        [ngClass]="{'invalid': title.invalid && title.touched}"
+      >
+      <div *ngIf="title.invalid && title.touched" class="error">
+        <span *ngIf="title.errors?.['required']">Title is required.</span>
+        <span *ngIf="title.errors?.['minlength']">Title must be at least 3 characters.</span>
+        <span *ngIf="!noWhitespaceValidator(task.title) && title.touched">Title cannot be only whitespace.</span>
+      </div>
+    </div>
