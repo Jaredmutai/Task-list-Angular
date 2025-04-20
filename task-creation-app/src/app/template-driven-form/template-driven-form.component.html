@@ -1,35 +1,35 @@
 <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" class="form-container">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input
-        id="title"
-        name="title"
-        [(ngModel)]="task.title"
-        required
-        minlength="3"
-        #title="ngModel"
-        [ngClass]="{'invalid': title.invalid && title.touched}"
-      >
-      <div *ngIf="title.invalid && title.touched" class="error">
-        <span *ngIf="title.errors?.['required']">Title is required.</span>
-        <span *ngIf="title.errors?.['minlength']">Title must be at least 3 characters.</span>
-        <span *ngIf="!noWhitespaceValidator(task.title) && title.touched">Title cannot be only whitespace.</span>
-      </div>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      name="title"
+      [(ngModel)]="task.title"
+      required
+      minlength="3"
+      #title="ngModel"
+      [ngClass]="{'invalid': title.invalid && title.touched}"
+    >
+    <div *ngIf="title.invalid && title.touched" class="error">
+      <span *ngIf="title.errors?.['required']">Title is required.</span>
+      <span *ngIf="title.errors?.['minlength']">Title must be at least 3 characters.</span>
+      <span *ngIf="!noWhitespaceValidator(task.title) && title.touched">Title cannot be only whitespace.</span>
     </div>
-  
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        name="description"
-        [(ngModel)]="task.description"
-      ></textarea>
-    </div>
-  
-    <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
-  </form>
-  
-  <h3>Task List</h3>
-  <ul class="task-list">
-    <li *ngFor="let task of tasks">{{ task.title }} - {{ task.description || 'No description' }}</li>
-  </ul>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      [(ngModel)]="task.description"
+    ></textarea>
+  </div>
+
+  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+</form>
+
+<h3>Task List</h3>
+<ul class="task-list">
+  <li *ngFor="let task of tasks">{{ task.title }} - {{ task.description || 'No description' }}</li>
+</ul>
