@@ -12,3 +12,15 @@ export function noWhitespaceValidator(control: any): { [key: string]: any } | nu
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.scss']
 })
+
+export class ReactiveFormComponent implements OnInit {
+  taskForm: FormGroup;
+  tasks: Task[] = [];
+
+  constructor(private fb: FormBuilder, private taskService: TaskService) {
+    this.taskForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), noWhitespaceValidator]],
+      description: ['']
+    });
+    this.tasks = this.taskService.getTasks();
+  }
