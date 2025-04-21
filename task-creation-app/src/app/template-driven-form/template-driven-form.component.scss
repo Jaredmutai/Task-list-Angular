@@ -43,3 +43,22 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .task-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .task-list li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
