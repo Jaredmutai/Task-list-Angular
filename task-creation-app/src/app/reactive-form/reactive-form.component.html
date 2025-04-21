@@ -1,1 +1,8 @@
-<p>reactive-form works!</p>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        formControlName="title"
+        [ngClass]="{'invalid': taskForm.get('title')?.invalid && taskForm.get('title')?.touched}"
+      >
