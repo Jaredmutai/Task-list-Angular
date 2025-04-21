@@ -24,3 +24,13 @@ export class ReactiveFormComponent implements OnInit {
     });
     this.tasks = this.taskService.getTasks();
   }
+
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    if (this.taskForm.valid) {
+      this.taskService.addTask(this.taskForm.value);
+      this.taskForm.reset({ title: '', description: '' });
+    }
+  }
+}
