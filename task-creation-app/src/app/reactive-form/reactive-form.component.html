@@ -1,8 +1,14 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="form-container">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input
-        id="title"
-        formControlName="title"
-        [ngClass]="{'invalid': taskForm.get('title')?.invalid && taskForm.get('title')?.touched}"
-      >
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      id="title"
+      formControlName="title"
+      [ngClass]="{'invalid': taskForm.get('title')?.invalid && taskForm.get('title')?.touched}"
+    >
+    <div *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched" class="error">
+      <span *ngIf="taskForm.get('title')?.hasError('required')">Title is required.</span>
+      <span *ngIf="taskForm.get('title')?.hasError('minlength')">Title must be at least 3 characters.</span>
+      <span *ngIf="taskForm.get('title')?.hasError('whitespace')">Title cannot be only whitespace.</span>
+    </div>
+  </div>
