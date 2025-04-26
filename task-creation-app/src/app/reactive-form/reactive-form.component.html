@@ -26,3 +26,11 @@
     <select id="priority" formControlName="priority">
       <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
     </select>
+
+    <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+  </form>
+  
+  <h3>Task List</h3>
+  <ul class="task-list">
+    <li *ngFor="let task of tasks">{{ task.title }} - {{ task.description || 'No description' }}</li>
+  </ul>
