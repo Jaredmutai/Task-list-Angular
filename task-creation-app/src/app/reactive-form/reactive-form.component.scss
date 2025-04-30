@@ -67,3 +67,14 @@ button:disabled {
     font-size: 16px;
     margin-top: 20px;
   }
+
+  .form-group.ng-invalid.ng-touched input,
+  .form-group.ng-invalid.ng-touched textarea {
+    border-color: red;
+  }       
+
+  .form-group.ng-valid.ng-touched input,
+  .form-group.ng-valid.ng-touched textarea {
+    border-color: green;
+  } 
+  
