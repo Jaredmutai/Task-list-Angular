@@ -77,4 +77,10 @@ button:disabled {
   .form-group.ng-valid.ng-touched textarea {
     border-color: green;
   } 
-  
+
+  .form-group.ng-invalid.ng-touched .error {
+    display: block;
+  }
+  .form-group.ng-valid.ng-touched .error {
+    display: none;
+  }
