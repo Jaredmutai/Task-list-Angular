@@ -1,5 +1,11 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+.gitignore
+app.component.ts
+app.component.html
+app.component.css
+
+
 # Compiled output
 /dist
 /tmp
