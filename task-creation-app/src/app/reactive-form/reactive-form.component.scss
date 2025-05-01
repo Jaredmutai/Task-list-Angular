@@ -84,3 +84,13 @@ button:disabled {
   .form-group.ng-valid.ng-touched .error {
     display: none;
   }
+
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
