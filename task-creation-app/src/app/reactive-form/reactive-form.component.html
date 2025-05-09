@@ -34,3 +34,6 @@
   <ul class="task-list">
     <li *ngFor="let task of tasks">{{ task.title }} - {{ task.description || 'No description' }}</li>
   </ul>
+  <button (click)="clearTasks()">Clear Tasks</button>
+  
+</form>
