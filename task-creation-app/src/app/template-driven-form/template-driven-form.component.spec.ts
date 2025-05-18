@@ -130,4 +130,23 @@ describe('TemplateDrivenFormComponent', () => {
     const taskListItems = compiled.querySelectorAll('.task-list li');
     expect(taskListItems.length).toBe(2);
   });
+  it('should display the correct task details in the list', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
+
+    titleInput.value = 'Test Title';
+    descriptionInput.value = 'Test Description';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    const taskListItem = compiled.querySelector('.task-list li') as HTMLLIElement;
+    expect(taskListItem.textContent).toContain('Test Title');
+    expect(taskListItem.textContent).toContain('Test Description');
+  });
 });
