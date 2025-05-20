@@ -149,4 +149,13 @@ describe('TemplateDrivenFormComponent', () => {
     expect(taskListItem.textContent).toContain('Test Title');
     expect(taskListItem.textContent).toContain('Test Description');
   });
-});
+
+  
+    fixture.detectChanges();
+
+    const taskListItem = compiled.querySelector('.task-list li') as HTMLLIElement;
+    expect(taskListItem.textContent).toContain('Test Title');
+    expect(taskListItem.textContent).toContain('Test Description');
+  });
+  
+
