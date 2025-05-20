@@ -149,13 +149,26 @@ describe('TemplateDrivenFormComponent', () => {
     expect(taskListItem.textContent).toContain('Test Title');
     expect(taskListItem.textContent).toContain('Test Description');
   });
+  it('should clear the task list when the clear button is clicked', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
 
-  
+    titleInput.value = 'Test Title';
+    descriptionInput.value = 'Test Description';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
     fixture.detectChanges();
 
-    const taskListItem = compiled.querySelector('.task-list li') as HTMLLIElement;
-    expect(taskListItem.textContent).toContain('Test Title');
-    expect(taskListItem.textContent).toContain('Test Description');
-  });
-  
+    const clearButton = compiled.querySelector('.clear-button') as HTMLButtonElement;
+    clearButton?.dispatchEvent(new Event('click'));
 
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('.task-list')).toBeFalsy();
+  });
+});
