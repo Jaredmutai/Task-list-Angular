@@ -239,6 +239,25 @@ describe('TemplateDrivenFormComponent', () => {
 
     expect(compiled.querySelector('.error-message')).toBeTruthy();
   });
+  it('should not display the task list if no tasks have been added', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.task-list')).toBeFalsy();
+  });
+  it('should display the task list after a task is added', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
 
+    titleInput.value = 'Test Title';
+    descriptionInput.value = 'Test Description';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
 
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('.task-list')).toBeTruthy();
+  });
 });
