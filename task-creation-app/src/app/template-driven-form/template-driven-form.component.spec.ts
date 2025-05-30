@@ -287,4 +287,26 @@ describe('TemplateDrivenFormComponent', () => {
     const taskCount = compiled.querySelector('.task-count');
     expect(taskCount?.textContent).toContain('2 tasks');
   });
+  it('should not display the task count if no tasks have been added', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.task-count')).toBeFalsy();
+  });
+  it('should display the task count as "1 task" if only one task has been added', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
+
+    titleInput.value = 'Test Title';
+    descriptionInput.value = 'Test Description';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    const taskCount = compiled.querySelector('.task-count');
+    expect(taskCount?.textContent).toContain('1 task');
+  });
 });
