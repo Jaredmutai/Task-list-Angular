@@ -377,4 +377,23 @@ describe('TemplateDrivenFormComponent', () => {
 
     expect(compiled.querySelector('.task-list')).toBeTruthy();
   });
+  it('should display the correct task details in the task list after a valid submission', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
+
+    titleInput.value = 'Valid Title';
+    descriptionInput.value = 'Valid Description';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    const taskListItem = compiled.querySelector('.task-list li') as HTMLLIElement;
+    expect(taskListItem.textContent).toContain('Valid Title');
+    expect(taskListItem.textContent).toContain('Valid Description');
+  });
 });
