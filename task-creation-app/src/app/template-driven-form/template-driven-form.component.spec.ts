@@ -414,4 +414,9 @@ describe('TemplateDrivenFormComponent', () => {
     expect(titleInput.value).toBe('');
     expect(descriptionInput.value).toBe('');
   });
+
+  it('should not display the task list if no tasks have been added', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.task-list')).toBeFalsy();
+  });
 });
