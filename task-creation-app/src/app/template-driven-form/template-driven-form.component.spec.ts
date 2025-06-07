@@ -463,4 +463,35 @@ describe('TemplateDrivenFormComponent', () => {
     const taskCount = compiled.querySelector('.task-count');
     expect(taskCount?.textContent).toContain('2 tasks');
   });
+  it('should display the task list with correct task details after multiple submissions', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
+
+    titleInput.value = 'Test Title 1';
+    descriptionInput.value = 'Test Description 1';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    titleInput.value = 'Test Title 2';
+    descriptionInput.value = 'Test Description 2';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    const taskListItems = compiled.querySelectorAll('.task-list li');
+    expect(taskListItems.length).toBe(2);
+    expect(taskListItems[0].textContent).toContain('Test Title 1');
+    expect(taskListItems[0].textContent).toContain('Test Description 1');
+    expect(taskListItems[1].textContent).toContain('Test Title 2');
+    expect(taskListItems[1].textContent).toContain('Test Description 2');
+  });
 });
