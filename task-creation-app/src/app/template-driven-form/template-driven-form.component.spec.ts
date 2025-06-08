@@ -516,4 +516,21 @@ describe('TemplateDrivenFormComponent', () => {
 
     expect(compiled.querySelector('.task-list')).toBeFalsy();
   });
+  it('should not display the success message if the form is invalid', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const form = compiled.querySelector('form');
+    const titleInput = compiled.querySelector('input[name="title"]') as HTMLInputElement;
+    const descriptionInput = compiled.querySelector('textarea[name="description"]') as HTMLTextAreaElement;
+
+    titleInput.value = '';
+    descriptionInput.value = '';
+    titleInput.dispatchEvent(new Event('input'));
+    descriptionInput.dispatchEvent(new Event('input'));
+
+    form?.dispatchEvent(new Event('submit'));
+
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('.success-message')).toBeFalsy();
+  });
 });
