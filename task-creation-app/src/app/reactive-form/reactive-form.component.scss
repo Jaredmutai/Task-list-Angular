@@ -94,3 +94,19 @@ button:disabled {
     padding: 10px;
     border-bottom: 1px solid #eee;
   }
+
+  .task-list li.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .task-list li button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .task-list li button:hover {
+    background-color: #c82333;
+  }
