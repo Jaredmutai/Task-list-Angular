@@ -35,5 +35,11 @@
     <li *ngFor="let task of tasks">{{ task.title }} - {{ task.description || 'No description' }}</li>
   </ul>
   <button (click)="clearTasks()">Clear Tasks</button>
+
+  <button (click)="logFormValues()">Log Form Values</button>
+  <button (click)="logFormStatus()">Log Form Status</button>
+  <button (click)="resetForm()">Reset Form</button>
+  <button (click)="setFormValues()">Set Form Values</button>
+  
   
 </form>
