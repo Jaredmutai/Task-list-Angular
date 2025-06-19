@@ -108,6 +108,51 @@
         margin: 20px 0;
     }
 
+    .card table th,
+    .card table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .card table th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    .card table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .card table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .card form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card form label {
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .card form input,
+    .card form textarea,
+    .card form select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .card form input:focus,
+    .card form textarea:focus,
+    .card form select:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
 
     
 
