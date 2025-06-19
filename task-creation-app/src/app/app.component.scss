@@ -78,6 +78,35 @@
         color: #555;
         font-style: italic;
     }
+    .card blockquote p {
+        margin: 0;
+    }
+
+    .card code {
+        background-color: #f4f4f4;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: monospace;
+    }
+
+    .card pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+
+    .card pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 0.9em;
+    }
+
+    .card table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
 
 
     
