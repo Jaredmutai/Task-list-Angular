@@ -56,7 +56,7 @@ export class ReactiveFormComponent implements OnInit {
     this.deleteTask(task);
   }
   get form() {
-    return this.taskForm;
+    return this.taskForm.get;
   }
   get formValue() {
     return this.taskForm.value;
@@ -73,6 +73,8 @@ export class ReactiveFormComponent implements OnInit {
   get formStatus() {
     return this.taskForm.status;
   }
+
+  
 }
 
 
