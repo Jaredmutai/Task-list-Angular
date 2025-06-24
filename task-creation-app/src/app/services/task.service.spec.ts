@@ -13,4 +13,27 @@ describe('TaskService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should add a task', () => {
+    const task = { title: 'Test Task', description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).toContain(task);
+  });
+
+  it('should delete a task', () => {
+    const task = { title: 'Test Task', description: 'Test Description' };
+    service.addTask(task);
+    service.deleteTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
+  it('should return tasks', () => {
+    const task1 = { title: 'Task 1', description: 'Description 1' };
+    const task2 = { title: 'Task 2', description: 'Description 2' };
+    service.addTask(task1);
+    service.addTask(task2);
+    expect(service.getTasks()).toEqual([task1, task2]);
+  });
 });
+
+

@@ -33,6 +33,48 @@ export class ReactiveFormComponent implements OnInit {
       this.taskForm.reset({ title: '', description: '' });
     }
   }
+  resetForm(): void {
+    this.taskForm.reset({ title: '', description: '' });
+  }
+  get title() {
+    return this.taskForm.get('title');
+  }
+  get description() {
+    return this.taskForm.get('description');
+  }
+  get tasksList(): Task[] {
+    return this.taskService.getTasks();
+  }
+  deleteTask(task: Task): void {
+    this.taskService.deleteTask(task);
+  }
+  editTask(task: Task): void {
+    this.taskForm.patchValue({
+      title: task.title,
+      description: task.description
+    });
+    this.deleteTask(task);
+  }
+  get form() {
+    return this.taskForm.get;
+  }
+  get formValue() {
+    return this.taskForm.value;
+  }
+  get formValid() {
+    return this.taskForm.valid;
+  }
+  get formErrors() {
+    return this.taskForm.errors;
+  }
+  get formControls() {
+    return this.taskForm.controls;
+  }
+  get formStatus() {
+    return this.taskForm.status;
+  }
+
+  
 }
 
 
