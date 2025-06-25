@@ -34,6 +34,23 @@ describe('TaskService', () => {
     service.addTask(task2);
     expect(service.getTasks()).toEqual([task1, task2]);
   });
+
+  it('should return an empty array if no tasks are present', () => {
+    expect(service.getTasks()).toEqual([]);
+  });
+
+  it('should not add a task with empty title', () => {
+    const task = { title: '', description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
+  it('should not delete a task that does not exist', () => {
+    const task = { title: 'Non-existent Task', description: 'Test Description' };
+    service.deleteTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+  
 });
 
 
