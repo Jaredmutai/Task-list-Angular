@@ -51,6 +51,21 @@ describe('TaskService', () => {
     expect(service.getTasks()).not.toContain(task);
   });
   
+  it('should handle duplicate tasks', () => {
+    const task = { title: 'Duplicate Task', description: 'Test Description' };
+    service.addTask(task);
+    service.addTask(task); // Attempt to add the same task again
+    expect(service.getTasks().filter(t => t.title === task.title).length).toBe(1);
+  });
+
+  it('should clear all tasks', () => {
+    const task1 = { title: 'Task 1', description: 'Description 1' };
+    const task2 = { title: 'Task 2', description: 'Description 2' };
+    service.addTask(task1);
+    service.addTask(task2);
+    service.clearTasks();
+    expect(service.getTasks()).toEqual([]);
+  });
 });
 
 
