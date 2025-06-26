@@ -66,6 +66,21 @@ describe('TaskService', () => {
     service.clearTasks();
     expect(service.getTasks()).toEqual([]);
   });
+
+  it('should not clear tasks if no tasks are present', () => {
+    service.clearTasks();
+    expect(service.getTasks()).toEqual([]);
+  });
+
+  it('should return tasks in the order they were added', () => {
+    const task1 = { title: 'Task 1', description: 'Description 1' };
+    const task2 = { title: 'Task 2', description: 'Description 2' };
+    service.addTask(task1);
+    service.addTask(task2);
+    const tasks = service.getTasks();
+    expect(tasks[0]).toBe(task1);
+    expect(tasks[1]).toBe(task2);
+  });
 });
 
 
