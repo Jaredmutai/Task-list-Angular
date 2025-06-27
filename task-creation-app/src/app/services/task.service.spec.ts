@@ -81,6 +81,18 @@ describe('TaskService', () => {
     expect(tasks[0]).toBe(task1);
     expect(tasks[1]).toBe(task2);
   });
+
+  it('should not allow adding tasks with undefined properties', () => {
+    const task = { title: undefined, description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
+  it('should not allow adding tasks with null properties', () => {
+    const task = { title: null, description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
 });
 
 
