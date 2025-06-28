@@ -111,11 +111,38 @@ describe('TaskService', () => {
     expect(service.getTasks()).toContain(task);
   });
 
+  it('should not allow adding tasks with empty title and description', () => {
+    const task = { title: '', description: '' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
+  it('should not allow adding tasks with only description', () => {
+    const task = { title: '', description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
+  it('should not allow adding tasks with only title', () => {
+    const task = { title: 'Test Task', description: '' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
+
   it('should not allow adding tasks with empty description', () => {
     const task = { title: 'Test Task', description: '' };
     service.addTask(task);
     expect(service.getTasks()).not.toContain(task);
   });
 });
+
+// Note: The above tests assume that the TaskService has methods like addTask, deleteTask, getTasks, and clearTasks.
+// Adjust the tests according to the actual implementation of your TaskService.
+// If the TaskService has additional methods or properties, you may need to add more tests accordingly.
+// Also, ensure that the TaskService is properly implemented to handle these scenarios.
+// This includes methods for adding, deleting, retrieving, and clearing tasks, as well as handling edge cases like duplicates and empty tasks.
+// The tests are designed to cover a variety of scenarios, including adding, deleting, and retrieving tasks, as well as edge cases like duplicates, empty tasks, and special characters in task titles.
+// Make sure to run these tests in an environment where the TaskService is properly configured and available for injection.
+// You can run these tests using Angular's testing framework, typically with the command `ng test
 
 
