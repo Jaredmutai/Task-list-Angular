@@ -93,6 +93,29 @@ describe('TaskService', () => {
     service.addTask(task);
     expect(service.getTasks()).not.toContain(task);
   });
+  it('should handle tasks with special characters in title', () => {
+    const task = { title: 'Task @#$', description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).toContain(task);
+  });
+
+  it('should handle tasks with long titles', () => {
+    const task = { title: 'A'.repeat(1000), description: 'Test Description' };
+    service.addTask(task);
+    expect(service.getTasks()).toContain(task);
+  });
+
+  it('should handle tasks with empty description', () => {
+    const task = { title: 'Test Task', description: '' };
+    service.addTask(task);
+    expect(service.getTasks()).toContain(task);
+  });
+
+  it('should not allow adding tasks with empty description', () => {
+    const task = { title: 'Test Task', description: '' };
+    service.addTask(task);
+    expect(service.getTasks()).not.toContain(task);
+  });
 });
 
 
