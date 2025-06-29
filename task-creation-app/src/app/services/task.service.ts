@@ -46,4 +46,36 @@ export class TaskService {
   hasTaskWithTitleOrDescription(title: string, description: string): boolean {
     return this.tasks.some(task => task.title === title || task.description === description);
   }
+  hasTaskWithTitleAndDescriptionCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase() === title.toLowerCase() && 
+      task.description.toLowerCase() === description.toLowerCase()
+    );
+  }
+  hasTaskWithTitleOrDescriptionCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase() === title.toLowerCase() || 
+      task.description.toLowerCase() === description.toLowerCase()
+    );
+  }
+  hasTaskWithTitleAndDescriptionContaining(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) && 
+      task.description.includes(description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContaining(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) || 
+      task.description.includes(description)
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionContainingCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) && 
+      task.description.toLowerCase().includes(description.toLowerCase())
+    );
+  }
 }
