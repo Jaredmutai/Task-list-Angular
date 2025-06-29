@@ -78,4 +78,66 @@ export class TaskService {
       task.description.toLowerCase().includes(description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleOrDescriptionContainingCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) || 
+      task.description.toLowerCase().includes(description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionStartingWith(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) && 
+      task.description.startsWith(description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionStartingWith(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) || 
+      task.description.startsWith(description)
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionStartingWithCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) && 
+      task.description.toLowerCase().startsWith(description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionStartingWithCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) || 
+      task.description.toLowerCase().startsWith(description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionEndingWith(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) && 
+      task.description.endsWith(description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionEndingWith(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) || 
+      task.description.endsWith(description)
+    );
+  }
+  hasTaskWithTitleAndDescriptionEndingWithCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().endsWith(title.toLowerCase()) && 
+      task.description.toLowerCase().endsWith(description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionEndingWithCaseInsensitive(title: string, description: string): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().endsWith(title.toLowerCase()) || 
+      task.description.toLowerCase().endsWith(description.toLowerCase())
+    );
+  }
 }
