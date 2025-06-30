@@ -160,4 +160,29 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleOrDescriptionMatchingRegexCaseInsensitive(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      regex.test(task.title.toLowerCase()) || 
+      regex.test(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionContainingRegex(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) && 
+      task.description.includes(description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContainingRegex(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) || 
+      task.description.includes(description) ||
+      regex.test(task.title) ||
+      regex.test(task.description)
+    );
+  }
 }
