@@ -203,4 +203,22 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleAndDescriptionStartingWithRegex(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) && 
+      task.description.startsWith(description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionStartingWithRegex(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) || 
+      task.description.startsWith(description) ||
+      regex.test(task.title) ||
+      regex.test(task.description)
+    );
+  }
 }
