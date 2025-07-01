@@ -221,4 +221,22 @@ export class TaskService {
       regex.test(task.description)
     );
   }
+
+  hasTaskWithTitleAndDescriptionStartingWithRegexCaseInsensitive(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) && 
+      task.description.toLowerCase().startsWith(description.toLowerCase()) &&
+      regex.test(task.title.toLowerCase()) &&
+      regex.test(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionStartingWithRegexCaseInsensitive(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) || 
+      task.description.toLowerCase().startsWith(description.toLowerCase()) ||
+      regex.test(task.title.toLowerCase()) ||
+      regex.test(task.description.toLowerCase())
+    );
+  }
 }
