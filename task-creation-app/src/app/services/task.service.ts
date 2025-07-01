@@ -239,4 +239,13 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleAndDescriptionEndingWithRegex(title: string, description: string, regex: RegExp): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) && 
+      task.description.endsWith(description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
 }
