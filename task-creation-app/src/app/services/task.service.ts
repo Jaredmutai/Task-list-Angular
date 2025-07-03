@@ -276,5 +276,17 @@ export class TaskService {
     );
   }
 
+  hasTaskWithTitleAndDescriptionMatchingFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title) && 
+      descriptionFn(task.description)
+    );
+  }
+
 
 }
