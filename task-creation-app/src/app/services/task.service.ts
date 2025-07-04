@@ -300,4 +300,55 @@ export class TaskService {
     );
   }
 
+  hasTaskWithTitleAndDescriptionMatchingFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title.toLowerCase()) && 
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionMatchingFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title.toLowerCase()) || 
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionContainingFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) && 
+      task.description.includes(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContainingFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) || 
+      task.description.includes(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description)
+    );
+  }
 }
