@@ -351,4 +351,73 @@ export class TaskService {
       descriptionFn(task.description)
     );
   }
+
+  hasTaskWithTitleAndDescriptionContainingFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) && 
+      task.description.toLowerCase().includes(description.toLowerCase()) &&
+      titleFn(task.title.toLowerCase()) &&
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContainingFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) || 
+      task.description.toLowerCase().includes(description.toLowerCase()) ||
+      titleFn(task.title.toLowerCase()) ||
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+  hasTaskWithTitleAndDescriptionStartingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) && 
+      task.description.startsWith(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionStartingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) || 
+      task.description.startsWith(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description)
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionStartingWithFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) && 
+      task.description.toLowerCase().startsWith(description.toLowerCase()) &&
+      titleFn(task.title.toLowerCase()) &&
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
 }
