@@ -392,4 +392,18 @@ export class TaskService {
       descriptionFn(task.description)
     );
   }
+
+  hasTaskWithTitleOrDescriptionStartingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.startsWith(title) || 
+      task.description.startsWith(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description)
+    );
+  }
 }
