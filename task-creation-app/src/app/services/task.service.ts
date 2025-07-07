@@ -420,4 +420,46 @@ export class TaskService {
       descriptionFn(task.description.toLowerCase())
     );
   }
+
+    hasTaskWithTitleOrDescriptionStartingWithFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().startsWith(title.toLowerCase()) || 
+      task.description.toLowerCase().startsWith(description.toLowerCase()) ||
+      titleFn(task.title.toLowerCase()) ||
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionEndingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) && 
+      task.description.endsWith(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionEndingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) || 
+      task.description.endsWith(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description)
+    );
+  }
 }
