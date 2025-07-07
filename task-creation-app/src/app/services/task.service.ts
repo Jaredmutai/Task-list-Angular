@@ -448,4 +448,18 @@ export class TaskService {
       descriptionFn(task.description)
     );
   }
+
+  hasTaskWithTitleOrDescriptionEndingWithFunction(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) || 
+      task.description.endsWith(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description)
+    );
+  }
 }
