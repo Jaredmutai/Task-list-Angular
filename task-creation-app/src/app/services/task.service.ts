@@ -505,4 +505,19 @@ export class TaskService {
       regex.test(task.description)
     );
   }
+
+  hasTaskWithTitleOrDescriptionMatchingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title) || 
+      descriptionFn(task.description) ||
+      regex.test(task.title) ||
+      regex.test(task.description)
+    );
+  }
 }
