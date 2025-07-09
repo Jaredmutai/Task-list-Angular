@@ -462,4 +462,92 @@ export class TaskService {
       descriptionFn(task.description)
     );
   }
+
+  hasTaskWithTitleAndDescriptionEndingWithFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().endsWith(title.toLowerCase()) && 
+      task.description.toLowerCase().endsWith(description.toLowerCase()) &&
+      titleFn(task.title.toLowerCase()) &&
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionEndingWithFunctionCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().endsWith(title.toLowerCase()) || 
+      task.description.toLowerCase().endsWith(description.toLowerCase()) ||
+      titleFn(task.title.toLowerCase()) ||
+      descriptionFn(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionMatchingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title) && 
+      descriptionFn(task.description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionMatchingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title) || 
+      descriptionFn(task.description) ||
+      regex.test(task.title) ||
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionMatchingFunctionRegexCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title.toLowerCase()) && 
+      descriptionFn(task.description.toLowerCase()) &&
+      regex.test(task.title.toLowerCase()) &&
+      regex.test(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionMatchingFunctionRegexCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title.toLowerCase()) || 
+      descriptionFn(task.description.toLowerCase()) ||
+      regex.test(task.title.toLowerCase()) ||
+      regex.test(task.description.toLowerCase())
+    );
+  }
 }
