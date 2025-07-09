@@ -535,4 +535,19 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleOrDescriptionMatchingFunctionRegexCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      titleFn(task.title.toLowerCase()) || 
+      descriptionFn(task.description.toLowerCase()) ||
+      regex.test(task.title.toLowerCase()) ||
+      regex.test(task.description.toLowerCase())
+    );
+  }
 }
