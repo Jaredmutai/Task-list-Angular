@@ -550,4 +550,21 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleAndDescriptionContainingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) && 
+      task.description.includes(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
 }
