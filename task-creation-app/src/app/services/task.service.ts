@@ -550,4 +550,73 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+
+  hasTaskWithTitleAndDescriptionContainingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) && 
+      task.description.includes(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContainingFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.includes(title) || 
+      task.description.includes(description) ||
+      titleFn(task.title) ||
+      descriptionFn(task.description) ||
+      regex.test(task.title) ||
+      regex.test(task.description)
+    );
+  }
+
+  hasTaskWithTitleAndDescriptionContainingFunctionRegexCaseInsensitive(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) && 
+      task.description.toLowerCase().includes(description.toLowerCase()) &&
+      titleFn(task.title.toLowerCase()) &&
+      descriptionFn(task.description.toLowerCase()) &&
+      regex.test(task.title.toLowerCase()) &&
+      regex.test(task.description.toLowerCase())
+    );
+  }
+
+  hasTaskWithTitleOrDescriptionContainingFunctionRegexCaseInsensitive(
+    title: string,
+    description: string,
+    titleFn: (title: string) => boolean,
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.toLowerCase().includes(title.toLowerCase()) || 
+      task.description.toLowerCase().includes(description.toLowerCase()) ||
+      titleFn(task.title.toLowerCase()) ||
+      descriptionFn(task.description.toLowerCase()) ||
+      regex.test(task.title.toLowerCase()) ||
+      regex.test(task.description.toLowerCase())
+    );
+  }
+
 }
