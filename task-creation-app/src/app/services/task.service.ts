@@ -687,4 +687,21 @@ export class TaskService {
     );
   }
 
+  hasTaskWithTitleAndDescriptionEndingWithFunctionRegex(
+    title: string, 
+    description: string, 
+    titleFn: (title: string) => boolean, 
+    descriptionFn: (description: string) => boolean,
+    regex: RegExp
+  ): boolean {
+    return this.tasks.some(task => 
+      task.title.endsWith(title) && 
+      task.description.endsWith(description) &&
+      titleFn(task.title) &&
+      descriptionFn(task.description) &&
+      regex.test(task.title) &&
+      regex.test(task.description)
+    );
+  }
+
 }
