@@ -754,5 +754,6 @@ export class TaskService {
       regex.test(task.description.toLowerCase())
     );
   }
+  
 
 }
